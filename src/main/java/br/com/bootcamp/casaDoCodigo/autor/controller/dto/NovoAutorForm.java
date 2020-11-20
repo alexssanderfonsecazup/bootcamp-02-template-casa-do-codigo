@@ -1,6 +1,7 @@
 package br.com.bootcamp.casaDoCodigo.autor.controller.dto;
 
 import br.com.bootcamp.casaDoCodigo.autor.model.Autor;
+import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.Unique;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -15,6 +16,7 @@ public class NovoAutorForm {
     private String descricao;
 
     @NotBlank @Email
+    @Unique(fieldName = "email", domainClass = Autor.class)
     private String email;
 
 

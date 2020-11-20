@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -36,7 +38,7 @@ public class ValidacaoErrorHandler {
     }
 
 
-    //Utilize o padrão nomeDoCampo_unico nas contraints para que handler
+    //Utilize o padrão nomeDoCampo_unico nas contraints unicas para que o handler
     //consiga recuperar o nome do campo
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(DataIntegrityViolationException.class)
@@ -50,7 +52,10 @@ public class ValidacaoErrorHandler {
             String campo = matcher.group(1);
             return new ErroFormulario(campo, "Já existe um registro com o valor informado");
         }
-            return new ErroFormulario("Campo não identificado", "Já existe um registro com o valor informado");
+            return new ErroFormulario("Campo não identificado", "Violação de uma constraint de integridade");
 
     }
+
+
+
 }

@@ -18,6 +18,6 @@ public class ErroFormulario {
     }
 
     public String getMensagem() {
-        return StringUtils.capitalize(mensagem);
+        return mensagem;
     }
 }

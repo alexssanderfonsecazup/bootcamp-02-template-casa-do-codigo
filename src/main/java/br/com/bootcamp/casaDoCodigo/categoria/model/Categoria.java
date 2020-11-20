@@ -15,6 +15,14 @@ public class Categoria {
     @NotBlank
     private String nome;
 
+    /**
+     * Construtor
+     */
+    @Deprecated
+    public Categoria(){
+
+    }
+
 
     public Categoria(@NotBlank String nome) {
         Assert.hasText(nome,"Nome da categoria é obrigatória");
