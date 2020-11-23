@@ -36,7 +36,7 @@ public class Livro {
     private String isbn;
 
     @Future
-    private LocalDate dataDePublicao;
+    private LocalDate dataDePublicacao;
 
     @NotNull
     @ManyToOne
@@ -53,7 +53,7 @@ public class Livro {
     public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo,
                  String sumario, @NotNull @DecimalMin("20.0") BigDecimal preco,
                  @NotNull @Min(100) int numeroDePaginas, @NotBlank String isbn,
-                 @Future LocalDate dataDePublicao, @NotNull Categoria categoria,
+                 @Future LocalDate dataDePublicacao, @NotNull Categoria categoria,
                  @NotNull Autor autor) {
 
 
@@ -65,7 +65,7 @@ public class Livro {
         this.preco = preco;
         this.numeroDePaginas = numeroDePaginas;
         this.isbn = isbn;
-        this.dataDePublicao = dataDePublicao;
+        this.dataDePublicacao = dataDePublicacao;
 
     }
 
@@ -97,8 +97,8 @@ public class Livro {
         return isbn;
     }
 
-    public LocalDate getDataDePublicao() {
-        return dataDePublicao;
+    public LocalDate getDataDePublicacao() {
+        return dataDePublicacao;
     }
 
     public Categoria getCategoria() {

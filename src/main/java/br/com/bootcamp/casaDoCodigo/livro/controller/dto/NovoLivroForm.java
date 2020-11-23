@@ -42,7 +42,7 @@ public class NovoLivroForm {
 
     @Future
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate dataDePublicao;
+    private LocalDate dataDePublicacao;
 
 
     @NotNull
@@ -60,11 +60,10 @@ public class NovoLivroForm {
         Assert.state(autor !=null,"Não foi encontrado um autor correspondente cadastrado");
 
         Categoria categoria = entityManager.find(Categoria.class, idCategoria);
-
         Assert.state(categoria!=null,"Não foi encontrada uma categoria correspondente cadastrada");
 
         return new Livro(titulo,resumo,sumario,preco,numeroDePaginas
-        ,isbn,dataDePublicao,categoria,autor);
+        ,isbn,dataDePublicacao,categoria,autor);
     }
 
 
@@ -92,8 +91,8 @@ public class NovoLivroForm {
         return isbn;
     }
 
-    public LocalDate getDataDePublicao() {
-        return dataDePublicao;
+    public LocalDate getDataDePublicacao() {
+        return dataDePublicacao;
     }
 
     public Long getIdCategoria() {
