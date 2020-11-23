@@ -24,6 +24,6 @@ public class AutorController {
     public ResponseEntity<?> cadastrar(@RequestBody @Valid NovoAutorForm autorForm){
         Autor autor = autorForm.paraAutor(autorForm);
         autorRepository.save(autor);
-        return ResponseEntity.ok(autor);
+        return ResponseEntity.ok().build();
     }
 }

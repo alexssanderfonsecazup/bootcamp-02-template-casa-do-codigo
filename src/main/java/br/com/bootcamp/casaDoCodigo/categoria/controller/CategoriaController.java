@@ -27,7 +27,7 @@ public class CategoriaController {
         Categoria categoria = novaCategoriaForm.paraCategoria();
         categoriaRepository.save(categoria);
 
-        return ResponseEntity.ok(categoria);
+        return ResponseEntity.ok().build();
     }
 }
 
