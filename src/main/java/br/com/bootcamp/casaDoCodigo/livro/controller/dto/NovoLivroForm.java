@@ -1,11 +1,10 @@
 package br.com.bootcamp.casaDoCodigo.livro.controller.dto;
 
 import br.com.bootcamp.casaDoCodigo.autor.model.Autor;
-import br.com.bootcamp.casaDoCodigo.autor.repository.AutorRepository;
 import br.com.bootcamp.casaDoCodigo.categoria.model.Categoria;
-import br.com.bootcamp.casaDoCodigo.categoria.repository.CategoriaRepository;
 import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.ExistsId;
 import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.Unique;
+import br.com.bootcamp.casaDoCodigo.livro.builder.BuilderLivro;
 import br.com.bootcamp.casaDoCodigo.livro.model.Livro;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.util.Assert;
@@ -14,7 +13,6 @@ import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class NovoLivroForm {
 
@@ -62,8 +60,17 @@ public class NovoLivroForm {
         Categoria categoria = entityManager.find(Categoria.class, idCategoria);
         Assert.state(categoria!=null,"Não foi encontrada uma categoria correspondente cadastrada");
 
-        return new Livro(titulo,resumo,sumario,preco,numeroDePaginas
-        ,isbn,dataDePublicacao,categoria,autor);
+        return new BuilderLivro().addAutor(autor)
+                .addTitulo(titulo)
+                .addResumo(resumo)
+                .addCategoria(categoria)
+                .addPreco(preco)
+                .addNumeroDePaginas(numeroDePaginas)
+                .addAutor(autor)
+                .addIsbn(isbn)
+                .addSumario(sumario)
+                .addDataDePublicacao(dataDePublicacao)
+                .build();
     }
 
 

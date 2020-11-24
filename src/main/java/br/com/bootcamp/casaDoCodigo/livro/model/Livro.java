@@ -2,6 +2,7 @@ package br.com.bootcamp.casaDoCodigo.livro.model;
 
 import br.com.bootcamp.casaDoCodigo.autor.model.Autor;
 import br.com.bootcamp.casaDoCodigo.categoria.model.Categoria;
+import br.com.bootcamp.casaDoCodigo.livro.builder.BuilderLivro;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -9,6 +10,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(name = "titulo_unico", columnNames = {"titulo"})
+        , @UniqueConstraint(name = "isbn_unico", columnNames = {"isbn"}) })
+
 public class Livro {
 
     @Id
@@ -47,7 +51,8 @@ public class Livro {
     private Autor autor;
 
     @Deprecated
-    public Livro(){ }
+    public Livro() {
+    }
 
 
     public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo,
@@ -67,6 +72,19 @@ public class Livro {
         this.isbn = isbn;
         this.dataDePublicacao = dataDePublicacao;
 
+    }
+
+    public Livro(BuilderLivro builderLivro){
+
+        this.categoria = builderLivro.getCategoria();
+        this.autor = builderLivro.getAutor();
+        this.titulo = builderLivro.getTitulo();
+        this.resumo = builderLivro.getResumo();
+        this.sumario = builderLivro.getSumario();
+        this.preco = builderLivro.getPreco();
+        this.numeroDePaginas = builderLivro.getNumeroDePaginas();
+        this.isbn = builderLivro.getIsbn();
+        this.dataDePublicacao = builderLivro.getDataDePublicacao();
     }
 
     public Long getId() {

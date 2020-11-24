@@ -25,6 +25,10 @@ public class ExistsIdValidator  implements ConstraintValidator<ExistsId,Object> 
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
+
+        if(value == null){
+            return true;
+        }
         String sql = "SELECT 1 FROM $class WHERE $attributeName =:value";
         sql = sql.replace("$class",clazz.getName())
                 .replace("$attributeName",attributeName);
