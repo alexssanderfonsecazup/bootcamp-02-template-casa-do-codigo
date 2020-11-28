@@ -1,6 +1,7 @@
 package br.com.bootcamp.casaDoCodigo.país.model.Paises;
 
 import br.com.bootcamp.casaDoCodigo.estado.model.Estado;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Pais {
     private String nome;
 
     @OneToMany(mappedBy = "pais")
+    @JsonIgnore
     private Set<Estado> estados;
 
     /**

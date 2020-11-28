@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(name = "titulo_unico", columnNames = {"titulo"})
@@ -55,25 +56,6 @@ public class Livro {
     }
 
 
-    public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo,
-                 String sumario, @NotNull @DecimalMin("20.0") BigDecimal preco,
-                 @NotNull @Min(100) int numeroDePaginas, @NotBlank String isbn,
-                 @Future LocalDate dataDePublicacao, @NotNull Categoria categoria,
-                 @NotNull Autor autor) {
-
-
-        this.categoria = categoria;
-        this.autor = autor;
-        this.titulo = titulo;
-        this.resumo = resumo;
-        this.sumario = sumario;
-        this.preco = preco;
-        this.numeroDePaginas = numeroDePaginas;
-        this.isbn = isbn;
-        this.dataDePublicacao = dataDePublicacao;
-
-    }
-
     public Livro(BuilderLivro builderLivro){
 
         this.categoria = builderLivro.getCategoria();
@@ -85,6 +67,19 @@ public class Livro {
         this.numeroDePaginas = builderLivro.getNumeroDePaginas();
         this.isbn = builderLivro.getIsbn();
         this.dataDePublicacao = builderLivro.getDataDePublicacao();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Livro livro = (Livro) o;
+        return Objects.equals(isbn, livro.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isbn);
     }
 
     public Long getId() {

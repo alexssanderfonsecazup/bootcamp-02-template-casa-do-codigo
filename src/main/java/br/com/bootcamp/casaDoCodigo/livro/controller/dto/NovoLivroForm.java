@@ -2,7 +2,7 @@ package br.com.bootcamp.casaDoCodigo.livro.controller.dto;
 
 import br.com.bootcamp.casaDoCodigo.autor.model.Autor;
 import br.com.bootcamp.casaDoCodigo.categoria.model.Categoria;
-import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.ExistsId;
+import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.Exists;
 import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.Unique;
 import br.com.bootcamp.casaDoCodigo.livro.builder.BuilderLivro;
 import br.com.bootcamp.casaDoCodigo.livro.model.Livro;
@@ -44,13 +44,29 @@ public class NovoLivroForm {
 
 
     @NotNull
-    @ExistsId(fieldName = "id", domainClass = Categoria.class)
+    @Exists(fieldName = "id", domainClass = Categoria.class)
     private Long idCategoria;
 
     @NotNull
-    @ExistsId(fieldName = "id", domainClass = Autor.class)
+    @Exists(fieldName = "id", domainClass = Autor.class)
     private Long idAutor;
 
+
+    public NovoLivroForm(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo,
+                         String sumario, @NotNull @DecimalMin("20.0") BigDecimal preco,
+                         @NotNull @Min(100) int numeroDePaginas,
+                         @NotBlank String isbn, @Future LocalDate dataDePublicacao,
+                         @NotNull Long idCategoria, @NotNull Long idAutor) {
+        this.titulo = titulo;
+        this.resumo = resumo;
+        this.sumario = sumario;
+        this.preco = preco;
+        this.numeroDePaginas = numeroDePaginas;
+        this.isbn = isbn;
+        this.dataDePublicacao = dataDePublicacao;
+        this.idCategoria = idCategoria;
+        this.idAutor = idAutor;
+    }
 
     public Livro toLivro(EntityManager entityManager){
 

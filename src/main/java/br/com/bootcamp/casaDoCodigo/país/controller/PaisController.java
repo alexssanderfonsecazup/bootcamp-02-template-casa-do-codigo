@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/paises")
-public class PaisesController {
+public class PaisController {
 
     @PersistenceContext
     EntityManager entityManager;

@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ExistsIdValidator  implements ConstraintValidator<ExistsId,Object> {
+public class ExistsValidator implements ConstraintValidator<Exists,Object> {
 
     @PersistenceContext
     private EntityManager manager;
@@ -18,7 +18,7 @@ public class ExistsIdValidator  implements ConstraintValidator<ExistsId,Object> 
 
 
     @Override
-    public void initialize(ExistsId params) {
+    public void initialize(Exists params) {
         attributeName = params.fieldName();
         clazz = params.domainClass();
     }

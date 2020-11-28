@@ -1,6 +1,6 @@
 package br.com.bootcamp.casaDoCodigo.estado.controller.dto;
 
-import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.ExistsId;
+import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.Exists;
 import br.com.bootcamp.casaDoCodigo.compartilhado.validacao.Unique;
 import br.com.bootcamp.casaDoCodigo.estado.model.Estado;
 import br.com.bootcamp.casaDoCodigo.país.model.Paises.Pais;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 public class NovoEstadoForm {
 
-    @NotNull @ExistsId(fieldName = "id", domainClass = Pais.class)
+    @NotNull @Exists(fieldName = "id", domainClass = Pais.class)
     private Long idPais;
 
     @NotBlank @Unique(domainClass = Estado.class , fieldName = "nome")

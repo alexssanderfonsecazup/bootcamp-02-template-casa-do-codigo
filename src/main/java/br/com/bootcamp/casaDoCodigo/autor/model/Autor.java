@@ -1,7 +1,6 @@
 package br.com.bootcamp.casaDoCodigo.autor.model;
 
 
-
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -10,8 +9,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(name = "email_unico", columnNames = {"email"}) })
@@ -59,10 +56,6 @@ public class Autor {
         return id;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -71,7 +64,4 @@ public class Autor {
         return descricao;
     }
 
-    public String getEmail() {
-        return email;
-    }
 }
